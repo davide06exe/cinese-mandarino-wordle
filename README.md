@@ -1,9 +1,9 @@
 # 猜拼音 (Cāi pīnyīn)
 
-Gioca: [apri il gioco](https://TUO-UTENTE.github.io/cai-pinyin/)
+Gioca: [apri il gioco](https://davide06exe.github.io/cinese-mandarino-wordle/)
 
 ```
-https://TUO-UTENTE.github.io/cai-pinyin/
+https://davide06exe.github.io/cinese-mandarino-wordle/
 ```
 
 Funziona nel browser, senza installare nulla (oppure apri `index.html` dai file del progetto). Indovina la parola cinese di base scrivendo il suo **pinyin**; l'indizio è il significato in italiano.
