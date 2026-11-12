@@ -71,6 +71,49 @@ const Engine = (() => {
       .join(' ');
   }
 
+  // ---------------------------------------------------------------- com'è fatta una parola
+
+  /**
+   * Frase che dice cosa vale un carattere dentro la parola. Restituisce { lead, rest }:
+   * `lead` è la parte da mettere in evidenza ("Da solo non ha significato:"), `rest` il resto.
+   *   s = da solo è una parola          n = da solo non si usa, ma ha un significato
+   *   x = da solo non ha significato    f = qui conta solo il suono
+   */
+  function describePart(part) {
+    switch (part.k) {
+      case 's':
+        return { lead: 'Da solo è una parola:', rest: `«${part.m}».` };
+      case 'n':
+        return { lead: 'Da solo non si usa come parola,', rest: `ma significa «${part.m}».` };
+      case 'x':
+        return { lead: 'Da solo non ha significato:', rest: `${part.m}.` };
+      case 'f':
+        return { lead: 'Qui conta solo il suono,', rest: `non il significato (${part.m}).` };
+      default:
+        throw new Error(`Stato sconosciuto: ${part.k}`);
+    }
+  }
+
+  /** Tutto ciò che serve a mostrare com'è fatta una parola a fine partita. */
+  function describeWord(word) {
+    const syllables = syllablesOf(word.p);
+    const count = word.parts.length;
+    const intro =
+      count === 1
+        ? 'Un solo carattere.'
+        : `${count === 2 ? 'Due' : 'Tre'} caratteri, una sillaba per carattere.`;
+
+    return {
+      intro,
+      parts: word.parts.map((part, i) => ({
+        h: part.h,
+        pinyin: markSyllable(syllables[i].letters, syllables[i].tone),
+        ...describePart(part),
+      })),
+      note: word.n || '',
+    };
+  }
+
   // ---------------------------------------------------------------- tentativi
 
   /**
@@ -192,6 +235,8 @@ const Engine = (() => {
     buildTarget,
     markSyllable,
     withToneMarks,
+    describePart,
+    describeWord,
     evaluate,
     canSplitIntoSyllables,
     validateGuess,

@@ -159,3 +159,70 @@ test('recordResult: vittorie, serie e distribuzione', () => {
   assert.equal(stats.best, 2);
   assert.equal(stats.played, 3);
 });
+
+test('describePart: le quattro situazioni', () => {
+  assert.deepEqual(Engine.describePart({ h: '电', m: 'elettricità', k: 's' }), {
+    lead: 'Da solo è una parola:',
+    rest: '«elettricità».',
+  });
+  assert.deepEqual(Engine.describePart({ h: '校', m: 'scuola', k: 'n' }), {
+    lead: 'Da solo non si usa come parola,',
+    rest: 'ma significa «scuola».',
+  });
+  assert.deepEqual(Engine.describePart({ h: '子', m: 'è un suffisso dei sostantivi', k: 'x' }), {
+    lead: 'Da solo non ha significato:',
+    rest: 'è un suffisso dei sostantivi.',
+  });
+  assert.deepEqual(Engine.describePart({ h: '大', m: 'di solito vuol dire «grande»', k: 'f' }), {
+    lead: 'Qui conta solo il suono,',
+    rest: 'non il significato (di solito vuol dire «grande»).',
+  });
+  assert.throws(() => Engine.describePart({ h: '?', m: 'x', k: 'q' }));
+});
+
+test('describeWord: parola di due caratteri', () => {
+  const word = WORDS.find((w) => w.h === '电话');
+  const info = Engine.describeWord(word);
+  assert.equal(info.intro, 'Due caratteri, una sillaba per carattere.');
+  assert.equal(info.parts.length, 2);
+  assert.deepEqual(info.parts[0], {
+    h: '电',
+    pinyin: 'diàn',
+    lead: 'Da solo è una parola:',
+    rest: '«elettricità».',
+  });
+  assert.equal(info.parts[1].pinyin, 'huà');
+  assert.equal(info.note, 'Letteralmente «parola elettrica».');
+});
+
+test('describeWord: un carattere senza significato proprio viene detto esplicitamente', () => {
+  const info = Engine.describeWord(WORDS.find((w) => w.h === '椅子'));
+  assert.equal(info.parts[0].lead, 'Da solo non si usa come parola,');
+  assert.equal(info.parts[1].lead, 'Da solo non ha significato:');
+  assert.equal(info.parts[1].pinyin, 'zi'); // tono neutro: nessun segno
+});
+
+test('describeWord: parola di un solo carattere e parola di tre', () => {
+  assert.equal(Engine.describeWord(WORDS.find((w) => w.h === '水')).intro, 'Un solo carattere.');
+  assert.equal(
+    Engine.describeWord(WORDS.find((w) => w.h === '意大利')).intro,
+    'Tre caratteri, una sillaba per carattere.',
+  );
+});
+
+test('vocabolario: ogni carattere ha la sua descrizione, nell\'ordine giusto', () => {
+  const stati = new Set(['s', 'n', 'x', 'f']);
+  for (const word of WORDS) {
+    const chars = [...word.h];
+    assert.equal(word.parts.length, chars.length, `${word.h}: numero di parti`);
+    word.parts.forEach((part, i) => {
+      assert.equal(part.h, chars[i], `${word.h}: carattere ${i + 1}`);
+      assert.ok(stati.has(part.k), `${word.h}: stato ${part.k}`);
+      assert.ok(part.m && part.m.trim(), `${word.h}: significato di ${part.h}`);
+      assert.ok(!part.m.endsWith('.'), `${word.h}: il significato di ${part.h} non deve finire con un punto`);
+    });
+    if (word.n) assert.ok(word.n.endsWith('.'), `${word.h}: la nota deve finire con un punto`);
+    const info = Engine.describeWord(word); // non deve lanciare errori
+    assert.equal(info.parts.length, chars.length);
+  }
+});

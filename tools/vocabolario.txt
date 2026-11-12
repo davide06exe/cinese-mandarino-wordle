@@ -1,5 +1,14 @@
 # Vocabolario di base (livello HSK 1-2 circa)
-# Formato: caratteri | pinyin con numeri dei toni (5 = tono neutro) | significato in italiano | categoria
+# Formato: caratteri | pinyin con numeri dei toni (5 = tono neutro) | significato in italiano | categoria | parti | nota
+#
+# parti = una voce per carattere, separate da ';':   carattere=significato/stato
+#   stato s = da solo è una parola
+#   stato n = da solo non si usa, ma ha un significato che ritrovi in altre parole
+#   stato x = da solo non ha significato (suffisso, sillaba che esiste solo in quella parola):
+#             dopo '=' va scritta la spiegazione, per esempio  子=è un suffisso dei sostantivi/x
+#   stato f = qui conta solo il suono (trascrizione di un nome straniero)
+# nota  = facoltativa: come è costruita la parola (significato letterale, verbo + oggetto, ecc.)
+# Dentro parti e nota non usare i caratteri  |  ;  /  =
 # Le righe che iniziano con # sono commenti.
 # Dopo aver modificato questo file, esegui:  python3 tools/build_data.py
 #
@@ -7,201 +16,201 @@
 # I toni sono quelli "da dizionario" (nessuna regola di cambio tono, es. 你好 resta ni3hao3).
 
 # --- saluti ---
-你好|ni3hao3|ciao|saluti
-谢谢|xie4xie5|grazie|saluti
-再见|zai4jian4|arrivederci|saluti
-对不起|dui4bu5qi3|scusa, mi dispiace|saluti
-请问|qing3wen4|scusi, posso chiedere...?|saluti
-欢迎|huan1ying2|benvenuto|saluti
+你好|ni3hao3|ciao|saluti|你=tu/s;好=bene, buono/s|Letteralmente «tu bene».
+谢谢|xie4xie5|grazie|saluti|谢=ringraziare/s;谢=ringraziare/s|Raddoppiamento: il carattere si ripete e la seconda sillaba è in tono neutro.
+再见|zai4jian4|arrivederci|saluti|再=ancora, di nuovo/s;见=vedere, incontrare/s|Letteralmente «rivedersi».
+对不起|dui4bu5qi3|scusa, mi dispiace|saluti|对=giusto, di fronte a/s;不=non/s;起=alzarsi, reggere/n|Letteralmente «non poter stare di fronte a (qualcuno)».
+请问|qing3wen4|scusi, posso chiedere...?|saluti|请=per favore, invitare/s;问=chiedere/s|Letteralmente «per favore, chiedere».
+欢迎|huan1ying2|benvenuto|saluti|欢=gioioso/n;迎=accogliere/n|Letteralmente «accogliere con gioia».
 
 # --- persone ---
-朋友|peng2you5|amico|persone
-学生|xue2sheng5|studente|persone
-老师|lao3shi1|insegnante|persone
-医生|yi1sheng1|medico|persone
-同学|tong2xue2|compagno di classe|persone
-小姐|xiao3jie3|signorina|persone
-警察|jing3cha2|poliziotto|persone
-司机|si1ji1|autista|persone
-孩子|hai2zi5|bambino|persone
-大家|da4jia1|tutti|persone
-名字|ming2zi5|nome|persone
+朋友|peng2you5|amico|persone|朋=amico/n;友=amico/n|I due caratteri vogliono entrambi dire «amico».
+学生|xue2sheng5|studente|persone|学=studiare/s;生=persona (come in 医生)/n|Letteralmente «persona che studia».
+老师|lao3shi1|insegnante|persone|老=vecchio/s;师=maestro/n|老 qui non vuol dire «vecchio»: è un prefisso di rispetto. Letteralmente «rispettabile maestro».
+医生|yi1sheng1|medico|persone|医=medicina/n;生=persona (come in 学生)/n|Letteralmente «persona della medicina».
+同学|tong2xue2|compagno di classe|persone|同=stesso, insieme/n;学=studiare/s|Letteralmente «studiare insieme».
+小姐|xiao3jie3|signorina|persone|小=piccolo/s;姐=sorella maggiore/s|Letteralmente «giovane sorella maggiore».
+警察|jing3cha2|poliziotto|persone|警=vigilare, avvertire/n;察=osservare/n|Letteralmente «vigilare e osservare».
+司机|si1ji1|autista|persone|司=gestire/n;机=macchina/n|Letteralmente «chi gestisce la macchina».
+孩子|hai2zi5|bambino|persone|孩=bambino/n;子=è un suffisso dei sostantivi/x|Parola formata da «bambino» più il suffisso 子.
+大家|da4jia1|tutti|persone|大=grande/s;家=famiglia, casa/s|Letteralmente «la grande famiglia».
+名字|ming2zi5|nome|persone|名=nome/n;字=carattere scritto, lettera/s|Letteralmente «nome + carattere scritto».
 
 # --- pronomi e domande ---
-我们|wo3men5|noi|pronomi
-你们|ni3men5|voi|pronomi
-他们|ta1men5|loro|pronomi
-什么|shen2me5|che cosa|domande
-怎么|zen3me5|come|domande
-多少|duo1shao3|quanto, quanti|domande
+我们|wo3men5|noi|pronomi|我=io/s;们=è il segno del plurale per le persone/x|«io» + segno del plurale = «noi».
+你们|ni3men5|voi|pronomi|你=tu/s;们=è il segno del plurale per le persone/x|«tu» + segno del plurale = «voi».
+他们|ta1men5|loro|pronomi|他=lui/s;们=è il segno del plurale per le persone/x|«lui» + segno del plurale = «loro».
+什么|shen2me5|che cosa|domande|什=compare solo dentro 什么/x;么=compare solo in parole come 什么 e 怎么/x|Parola indivisibile: i due caratteri vanno sempre insieme.
+怎么|zen3me5|come|domande|怎=come/n;么=compare solo in parole come 什么 e 怎么/x|Parola che si usa sempre per intero.
+多少|duo1shao3|quanto, quanti|domande|多=molto/s;少=poco/s|Letteralmente «molto + poco»: si chiede quanto è.
 
 # --- famiglia ---
-爸爸|ba4ba5|papà|famiglia
-妈妈|ma1ma5|mamma|famiglia
-哥哥|ge1ge5|fratello maggiore|famiglia
-姐姐|jie3jie5|sorella maggiore|famiglia
-弟弟|di4di5|fratello minore|famiglia
-妹妹|mei4mei5|sorella minore|famiglia
-儿子|er2zi5|figlio|famiglia
-太太|tai4tai5|signora, moglie|famiglia
+爸爸|ba4ba5|papà|famiglia|爸=papà/s;爸=papà/s|Raddoppiamento: il carattere si ripete e la seconda sillaba è in tono neutro.
+妈妈|ma1ma5|mamma|famiglia|妈=mamma/s;妈=mamma/s|Raddoppiamento: il carattere si ripete e la seconda sillaba è in tono neutro.
+哥哥|ge1ge5|fratello maggiore|famiglia|哥=fratello maggiore/s;哥=fratello maggiore/s|Raddoppiamento: il carattere si ripete e la seconda sillaba è in tono neutro.
+姐姐|jie3jie5|sorella maggiore|famiglia|姐=sorella maggiore/s;姐=sorella maggiore/s|Raddoppiamento: il carattere si ripete e la seconda sillaba è in tono neutro.
+弟弟|di4di5|fratello minore|famiglia|弟=fratello minore/s;弟=fratello minore/s|Raddoppiamento: il carattere si ripete e la seconda sillaba è in tono neutro.
+妹妹|mei4mei5|sorella minore|famiglia|妹=sorella minore/s;妹=sorella minore/s|Raddoppiamento: il carattere si ripete e la seconda sillaba è in tono neutro.
+儿子|er2zi5|figlio|famiglia|儿=figlio, bambino/n;子=è un suffisso dei sostantivi/x|Parola formata da «figlio» più il suffisso 子.
+太太|tai4tai5|signora, moglie|famiglia|太=molto, estremo/s;太=molto, estremo/s|Raddoppiamento: insieme non vogliono dire «molto molto» ma «signora, moglie».
 
 # --- luoghi ---
-这里|zhe4li3|qui|luoghi
-那里|na4li3|là|luoghi
-前面|qian2mian5|davanti|luoghi
-后面|hou4mian5|dietro|luoghi
-里面|li3mian5|dentro|luoghi
-中国|zhong1guo2|Cina|luoghi
-北京|bei3jing1|Pechino|luoghi
-上海|shang4hai3|Shanghai|luoghi
-意大利|yi4da4li4|Italia|luoghi
-学校|xue2xiao4|scuola|luoghi
-大学|da4xue2|università|luoghi
-医院|yi1yuan4|ospedale|luoghi
-饭店|fan4dian4|ristorante, albergo|luoghi
-银行|yin2hang2|banca|luoghi
-超市|chao1shi4|supermercato|luoghi
-公园|gong1yuan2|parco|luoghi
-书店|shu1dian4|libreria|luoghi
-房间|fang2jian1|stanza|luoghi
+这里|zhe4li3|qui|luoghi|这=questo/s;里=dentro, luogo/n|Letteralmente «questo luogo».
+那里|na4li3|là|luoghi|那=quello/s;里=dentro, luogo/n|Letteralmente «quel luogo».
+前面|qian2mian5|davanti|luoghi|前=davanti/s;面=qui è un suffisso di posizione (lato)/x|Letteralmente «lato davanti».
+后面|hou4mian5|dietro|luoghi|后=dietro/s;面=qui è un suffisso di posizione (lato)/x|Letteralmente «lato dietro».
+里面|li3mian5|dentro|luoghi|里=dentro, luogo/n;面=qui è un suffisso di posizione (lato)/x|Letteralmente «lato interno».
+中国|zhong1guo2|Cina|luoghi|中=centro, mezzo/n;国=paese/n|Letteralmente «paese di mezzo».
+北京|bei3jing1|Pechino|luoghi|北=nord/s;京=capitale/n|Letteralmente «capitale del nord».
+上海|shang4hai3|Shanghai|luoghi|上=sopra, su/s;海=mare/s|Letteralmente «sul mare».
+意大利|yi4da4li4|Italia|luoghi|意=di solito vuol dire «idea, intenzione»/f;大=di solito vuol dire «grande»/f;利=di solito vuol dire «vantaggio»/f|Trascrizione del suono del nome «Italia»: i caratteri sono scelti per come suonano, non per il significato.
+学校|xue2xiao4|scuola|luoghi|学=studiare/s;校=scuola/n|Letteralmente «luogo dove si studia».
+大学|da4xue2|università|luoghi|大=grande/s;学=studiare/s|Letteralmente «grande scuola».
+医院|yi1yuan4|ospedale|luoghi|医=medicina/n;院=istituto, edificio/n|Letteralmente «istituto di medicina».
+饭店|fan4dian4|ristorante, albergo|luoghi|饭=riso cotto, pasto/s;店=negozio/s|Letteralmente «negozio di cibo».
+银行|yin2hang2|banca|luoghi|银=argento/s;行=azienda, istituto/n|Letteralmente «istituto d'argento». Qui 行 si legge háng, non xíng.
+超市|chao1shi4|supermercato|luoghi|超=oltre, super/n;市=mercato, città/n|Letteralmente «super mercato».
+公园|gong1yuan2|parco|luoghi|公=pubblico/n;园=giardino/n|Letteralmente «giardino pubblico».
+书店|shu1dian4|libreria|luoghi|书=libro/s;店=negozio/s|Letteralmente «negozio di libri».
+房间|fang2jian1|stanza|luoghi|房=casa, stanza/n;间=spazio, stanza/n|I due caratteri richiamano entrambi l'idea di «stanza».
 
 # --- trasporti ---
-火车|huo3che1|treno|trasporti
-飞机|fei1ji1|aereo|trasporti
+火车|huo3che1|treno|trasporti|火=fuoco/s;车=veicolo/s|Letteralmente «veicolo a fuoco» (dai primi treni a vapore).
+飞机|fei1ji1|aereo|trasporti|飞=volare/s;机=macchina/n|Letteralmente «macchina volante».
 
 # --- lingue ---
-汉语|han4yu3|lingua cinese|lingue
-中文|zhong1wen2|cinese (lingua)|lingue
-英语|ying1yu3|inglese (lingua)|lingue
+汉语|han4yu3|lingua cinese|lingue|汉=Han (l'etnia cinese maggioritaria)/n;语=lingua/n|Letteralmente «lingua Han».
+中文|zhong1wen2|cinese (lingua)|lingue|中=Cina, centro/n;文=scrittura, lingua/n|Letteralmente «lingua e scrittura della Cina».
+英语|ying1yu3|inglese (lingua)|lingue|英=Inghilterra/n;语=lingua/n|Letteralmente «lingua d'Inghilterra».
 
 # --- oggetti ---
-电话|dian4hua4|telefono|oggetti
-电脑|dian4nao3|computer|oggetti
-电视|dian4shi4|televisione|oggetti
-电影|dian4ying3|film|oggetti
-手机|shou3ji1|cellulare|oggetti
-杯子|bei1zi5|bicchiere, tazza|oggetti
-东西|dong1xi5|cosa, oggetto|oggetti
-衣服|yi1fu5|vestiti|oggetti
-椅子|yi3zi5|sedia|oggetti
-桌子|zhuo1zi5|tavolo|oggetti
-窗户|chuang1hu5|finestra|oggetti
-照片|zhao4pian4|foto|oggetti
-床|chuang2|letto|oggetti
-钱|qian2|soldi|oggetti
+电话|dian4hua4|telefono|oggetti|电=elettricità/s;话=parola, discorso/s|Letteralmente «parola elettrica».
+电脑|dian4nao3|computer|oggetti|电=elettricità/s;脑=cervello/n|Letteralmente «cervello elettrico».
+电视|dian4shi4|televisione|oggetti|电=elettricità/s;视=vista, guardare/n|Letteralmente «visione elettrica».
+电影|dian4ying3|film|oggetti|电=elettricità/s;影=ombra, immagine/n|Letteralmente «ombra elettrica».
+手机|shou3ji1|cellulare|oggetti|手=mano/s;机=macchina/n|Letteralmente «macchina da mano».
+杯子|bei1zi5|bicchiere, tazza|oggetti|杯=tazza, bicchiere/n;子=è un suffisso dei sostantivi/x|Parola formata da «bicchiere» più il suffisso 子.
+东西|dong1xi5|cosa, oggetto|oggetti|东=est/s;西=ovest/s|Letteralmente «est e ovest». Con 西 in tono neutro vuol dire «cosa»; con il tono 1 (dōngxī) vuol dire proprio «est e ovest».
+衣服|yi1fu5|vestiti|oggetti|衣=vestito/n;服=abito, indossare/n|I due caratteri richiamano entrambi gli abiti.
+椅子|yi3zi5|sedia|oggetti|椅=sedia/n;子=è un suffisso dei sostantivi/x|Parola formata da «sedia» più il suffisso 子.
+桌子|zhuo1zi5|tavolo|oggetti|桌=tavolo/n;子=è un suffisso dei sostantivi/x|Parola formata da «tavolo» più il suffisso 子.
+窗户|chuang1hu5|finestra|oggetti|窗=finestra/n;户=porta, casa/n|Letteralmente «finestra + porta».
+照片|zhao4pian4|foto|oggetti|照=illuminare, fotografare/s;片=pezzo piatto, immagine/n|Letteralmente «fotografare + immagine».
+床|chuang2|letto|oggetti|床=letto/s
+钱|qian2|soldi|oggetti|钱=soldi, denaro/s
 
 # --- tempo ---
-今天|jin1tian1|oggi|tempo
-明天|ming2tian1|domani|tempo
-昨天|zuo2tian1|ieri|tempo
-现在|xian4zai4|adesso|tempo
-时候|shi2hou5|momento, tempo|tempo
-晚上|wan3shang5|sera|tempo
-上午|shang4wu3|mattina|tempo
-下午|xia4wu3|pomeriggio|tempo
-中午|zhong1wu3|mezzogiorno|tempo
-星期|xing1qi1|settimana|tempo
-今年|jin1nian2|quest'anno|tempo
-去年|qu4nian2|anno scorso|tempo
-生日|sheng1ri4|compleanno|tempo
-年|nian2|anno|tempo
-天|tian1|cielo, giorno|tempo
+今天|jin1tian1|oggi|tempo|今=oggi, adesso/n;天=giorno, cielo/s|Letteralmente «questo giorno».
+明天|ming2tian1|domani|tempo|明=luminoso (qui: prossimo)/n;天=giorno, cielo/s|Letteralmente «il giorno prossimo».
+昨天|zuo2tian1|ieri|tempo|昨=ieri/n;天=giorno, cielo/s|Letteralmente «il giorno scorso».
+现在|xian4zai4|adesso|tempo|现=attuale, presente/n;在=essere in, trovarsi/s|Letteralmente «essere nel presente».
+时候|shi2hou5|momento, tempo|tempo|时=tempo/n;候=aspettare, periodo/n|Spesso vuol dire «quando»: 吃饭的时候 = «quando si mangia».
+晚上|wan3shang5|sera|tempo|晚=tardi/s;上=qui è un suffisso di tempo/x|Letteralmente «tardi»: 上 qui perde il suo significato di «sopra».
+上午|shang4wu3|mattina|tempo|上=sopra, prima/s;午=mezzogiorno/n|Letteralmente «prima di mezzogiorno».
+下午|xia4wu3|pomeriggio|tempo|下=sotto, dopo/s;午=mezzogiorno/n|Letteralmente «dopo mezzogiorno».
+中午|zhong1wu3|mezzogiorno|tempo|中=centro, mezzo/n;午=mezzogiorno/n
+星期|xing1qi1|settimana|tempo|星=stella/n;期=periodo/n|Letteralmente «periodo delle stelle».
+今年|jin1nian2|quest'anno|tempo|今=oggi, questo/n;年=anno/s|Letteralmente «anno presente».
+去年|qu4nian2|anno scorso|tempo|去=andare (qui: scorso)/s;年=anno/s|Letteralmente «l'anno andato».
+生日|sheng1ri4|compleanno|tempo|生=nascere/s;日=giorno, sole/n|Letteralmente «giorno di nascita».
+年|nian2|anno|tempo|年=anno/s
+天|tian1|cielo, giorno|tempo|天=cielo, giorno/s
 
 # --- numeri ---
-零|ling2|zero|numeri
-千|qian1|mille|numeri
+零|ling2|zero|numeri|零=zero/s
+千|qian1|mille|numeri|千=mille/s
 
 # --- natura e animali ---
-天气|tian1qi4|tempo (meteo)|natura
-下雨|xia4yu3|piovere|natura
-太阳|tai4yang2|sole|natura
-月亮|yue4liang5|luna|natura
-山|shan1|montagna|natura
-风|feng1|vento|natura
-水|shui3|acqua|natura
-熊猫|xiong2mao1|panda|animali
-小狗|xiao3gou3|cagnolino|animali
-小猫|xiao3mao1|gattino|animali
-老虎|lao3hu3|tigre|animali
+天气|tian1qi4|tempo (meteo)|natura|天=cielo/s;气=aria, vapore/n|Letteralmente «aria del cielo».
+下雨|xia4yu3|piovere|natura|下=cadere, scendere/s;雨=pioggia/s|Letteralmente «cade pioggia».
+太阳|tai4yang2|sole|natura|太=molto, grande/s;阳=sole (yang)/n|Letteralmente «grande sole».
+月亮|yue4liang5|luna|natura|月=luna, mese/s;亮=luminoso/s|Letteralmente «luna luminosa».
+山|shan1|montagna|natura|山=montagna/s
+风|feng1|vento|natura|风=vento/s
+水|shui3|acqua|natura|水=acqua/s
+熊猫|xiong2mao1|panda|animali|熊=orso/s;猫=gatto/s|Letteralmente «orso-gatto».
+小狗|xiao3gou3|cagnolino|animali|小=piccolo/s;狗=cane/s|Letteralmente «piccolo cane».
+小猫|xiao3mao1|gattino|animali|小=piccolo/s;猫=gatto/s|Letteralmente «piccolo gatto».
+老虎|lao3hu3|tigre|animali|老=vecchio/s;虎=tigre/n|老 qui non vuol dire «vecchio»: è un prefisso che si mette davanti ad alcuni animali.
 
 # --- aggettivi ---
-喜欢|xi3huan5|piacere, amare|verbi
-高兴|gao1xing4|contento|aggettivi
-好吃|hao3chi1|buono (da mangiare)|aggettivi
-好看|hao3kan4|bello (da vedere)|aggettivi
-便宜|pian2yi5|economico|aggettivi
-快乐|kuai4le4|felice|aggettivi
-很多|hen3duo1|molto, molti|aggettivi
-冷|leng3|freddo|aggettivi
-忙|mang2|occupato|aggettivi
-快|kuai4|veloce|aggettivi
-长|chang2|lungo|aggettivi
-远|yuan3|lontano|aggettivi
-少|shao3|poco|aggettivi
+喜欢|xi3huan5|piacere, amare|verbi|喜=gioia, piacere/n;欢=gioia/n|I due caratteri richiamano entrambi la gioia: «provare gioia per qualcosa».
+高兴|gao1xing4|contento|aggettivi|高=alto/s;兴=entusiasmo, gioia/n|Letteralmente «alto umore».
+好吃|hao3chi1|buono (da mangiare)|aggettivi|好=buono/s;吃=mangiare/s|Letteralmente «buono da mangiare».
+好看|hao3kan4|bello (da vedere)|aggettivi|好=buono/s;看=guardare/s|Letteralmente «bello da guardare».
+便宜|pian2yi5|economico|aggettivi|便=conveniente/n;宜=adatto/n|Qui 便 si legge pián (in altre parole, come 方便, si legge biàn).
+快乐|kuai4le4|felice|aggettivi|快=veloce (qui: lieto)/s;乐=felice, allegro/n|Qui 乐 si legge lè; in 音乐 si legge yuè.
+很多|hen3duo1|molto, molti|aggettivi|很=molto/s;多=molti, tanti/s|Letteralmente «molto + tanti».
+冷|leng3|freddo|aggettivi|冷=freddo/s
+忙|mang2|occupato|aggettivi|忙=occupato/s
+快|kuai4|veloce|aggettivi|快=veloce/s
+长|chang2|lungo|aggettivi|长=lungo/s|长 ha due letture: cháng «lungo» e zhǎng «crescere».
+远|yuan3|lontano|aggettivi|远=lontano/s
+少|shao3|poco|aggettivi|少=poco/s|Con il tono 4 (shào) vuol dire «giovane».
 
 # --- cibo e bevande ---
-米饭|mi3fan4|riso cotto|cibo
-面条|mian4tiao2|spaghetti cinesi|cibo
-苹果|ping2guo3|mela|cibo
-水果|shui3guo3|frutta|cibo
-牛奶|niu2nai3|latte|cibo
-鸡蛋|ji1dan4|uovo|cibo
-面包|mian4bao1|pane|cibo
-咖啡|ka1fei1|caffè|cibo
-啤酒|pi2jiu3|birra|cibo
-蔬菜|shu1cai4|verdura|cibo
-牛肉|niu2rou4|manzo|cibo
-鸡肉|ji1rou4|pollo|cibo
-猪肉|zhu1rou4|maiale|cibo
-豆腐|dou4fu5|tofu|cibo
-饺子|jiao3zi5|ravioli cinesi|cibo
-包子|bao1zi5|panino al vapore|cibo
-火锅|huo3guo1|hot pot|cibo
+米饭|mi3fan4|riso cotto|cibo|米=riso (crudo)/s;饭=cibo cotto, pasto/s|Letteralmente «riso + pasto».
+面条|mian4tiao2|spaghetti cinesi|cibo|面=farina, pasta/s;条=striscia/n|Letteralmente «pasta in strisce».
+苹果|ping2guo3|mela|cibo|苹=compare quasi solo dentro 苹果/x;果=frutto/n|Parola formata da 苹 (che esiste quasi solo qui) più «frutto».
+水果|shui3guo3|frutta|cibo|水=acqua/s;果=frutto/n|Letteralmente «acqua + frutto».
+牛奶|niu2nai3|latte|cibo|牛=mucca/s;奶=latte/s|Letteralmente «latte di mucca».
+鸡蛋|ji1dan4|uovo|cibo|鸡=pollo, gallina/s;蛋=uovo/s|Letteralmente «uovo di gallina».
+面包|mian4bao1|pane|cibo|面=farina/s;包=involtino, pacchetto/s|Letteralmente «farina + involtino».
+咖啡|ka1fei1|caffè|cibo|咖=esiste solo per scrivere il suono di «coffee»/x;啡=esiste solo per scrivere il suono di «coffee»/x|Trascrizione del suono della parola inglese «coffee».
+啤酒|pi2jiu3|birra|cibo|啤=esiste solo per scrivere il suono di «beer»/x;酒=alcolici, vino/s|啤 riproduce il suono di «beer», 酒 indica le bevande alcoliche.
+蔬菜|shu1cai4|verdura|cibo|蔬=verdura/n;菜=verdura, piatto cucinato/s|I due caratteri richiamano entrambi la verdura.
+牛肉|niu2rou4|manzo|cibo|牛=mucca/s;肉=carne/s|Letteralmente «carne di mucca».
+鸡肉|ji1rou4|pollo|cibo|鸡=pollo, gallina/s;肉=carne/s|Letteralmente «carne di pollo».
+猪肉|zhu1rou4|maiale|cibo|猪=maiale/s;肉=carne/s|Letteralmente «carne di maiale».
+豆腐|dou4fu5|tofu|cibo|豆=fagiolo, soia/s;腐=cagliato, rappreso/n|Letteralmente «fagiolo rappreso».
+饺子|jiao3zi5|ravioli cinesi|cibo|饺=raviolo/n;子=è un suffisso dei sostantivi/x|Parola formata da 饺 («raviolo») più il suffisso 子.
+包子|bao1zi5|panino al vapore|cibo|包=involtino, pacchetto/s;子=è un suffisso dei sostantivi/x|Parola formata da «involtino» più il suffisso 子.
+火锅|huo3guo1|hot pot|cibo|火=fuoco/s;锅=pentola/s|Letteralmente «pentola di fuoco».
 
 # --- verbi ---
-吃饭|chi1fan4|mangiare|verbi
-喝水|he1shui3|bere acqua|verbi
-看书|kan4shu1|leggere|verbi
-说话|shuo1hua4|parlare|verbi
-睡觉|shui4jiao4|dormire|verbi
-起床|qi3chuang2|alzarsi|verbi
-上班|shang4ban1|andare al lavoro|verbi
-下班|xia4ban1|finire il lavoro|verbi
-开车|kai1che1|guidare|verbi
-回家|hui2jia1|tornare a casa|verbi
-上课|shang4ke4|andare a lezione|verbi
-下课|xia4ke4|finire la lezione|verbi
-学习|xue2xi2|studiare|verbi
-工作|gong1zuo4|lavoro, lavorare|verbi
-认识|ren4shi5|conoscere (una persona)|verbi
-知道|zhi1dao4|sapere|verbi
-帮助|bang1zhu4|aiutare|verbi
-希望|xi1wang4|sperare|verbi
-觉得|jue2de5|pensare, ritenere|verbi
-开始|kai1shi3|iniziare|verbi
-准备|zhun3bei4|preparare|verbi
-休息|xiu1xi5|riposare|verbi
-离开|li2kai1|lasciare, partire|verbi
-参加|can1jia1|partecipare|verbi
-想|xiang3|volere, pensare|verbi
-听|ting1|ascoltare|verbi
-说|shuo1|dire, parlare|verbi
+吃饭|chi1fan4|mangiare|verbi|吃=mangiare/s;饭=riso cotto, pasto/s|Verbo + oggetto: «mangiare riso», cioè «fare un pasto».
+喝水|he1shui3|bere acqua|verbi|喝=bere/s;水=acqua/s|Verbo + oggetto: «bere acqua».
+看书|kan4shu1|leggere|verbi|看=guardare/s;书=libro/s|Verbo + oggetto: «guardare libri», cioè «leggere».
+说话|shuo1hua4|parlare|verbi|说=dire, parlare/s;话=parola, discorso/s|Verbo + oggetto: «dire parole».
+睡觉|shui4jiao4|dormire|verbi|睡=dormire/s;觉=sonno/s|Verbo + oggetto: «dormire il sonno». Qui 觉 si legge jiào; in 觉得 si legge jué.
+起床|qi3chuang2|alzarsi|verbi|起=alzarsi/n;床=letto/s|Verbo + oggetto: «alzarsi dal letto».
+上班|shang4ban1|andare al lavoro|verbi|上=salire, andare/s;班=turno di lavoro, classe/s|Verbo + oggetto: «salire al turno di lavoro».
+下班|xia4ban1|finire il lavoro|verbi|下=scendere, uscire/s;班=turno di lavoro, classe/s|Verbo + oggetto: «scendere dal turno di lavoro».
+开车|kai1che1|guidare|verbi|开=aprire, far partire/s;车=veicolo/s|Verbo + oggetto: «far partire un veicolo», cioè «guidare».
+回家|hui2jia1|tornare a casa|verbi|回=tornare/s;家=casa, famiglia/s|Verbo + oggetto: «tornare a casa».
+上课|shang4ke4|andare a lezione|verbi|上=salire, andare/s;课=lezione/s|Verbo + oggetto: «salire alla lezione».
+下课|xia4ke4|finire la lezione|verbi|下=scendere, uscire/s;课=lezione/s|Verbo + oggetto: «scendere dalla lezione».
+学习|xue2xi2|studiare|verbi|学=studiare/s;习=esercitarsi, ripassare/n|I due caratteri richiamano entrambi lo studio: «imparare + esercitarsi».
+工作|gong1zuo4|lavoro, lavorare|verbi|工=lavoro/n;作=fare/n|Letteralmente «lavoro + fare».
+认识|ren4shi5|conoscere (una persona)|verbi|认=riconoscere/n;识=conoscere/n|Letteralmente «riconoscere + conoscere».
+知道|zhi1dao4|sapere|verbi|知=sapere/n;道=via, strada/s|Letteralmente «sapere + la via».
+帮助|bang1zhu4|aiutare|verbi|帮=aiutare/s;助=aiutare/n|I due caratteri vogliono entrambi dire «aiutare».
+希望|xi1wang4|sperare|verbi|希=sperare/n;望=guardare lontano, sperare/n|I due caratteri richiamano entrambi la speranza.
+觉得|jue2de5|pensare, ritenere|verbi|觉=sentire/n;得=qui è solo la seconda sillaba, leggera, della parola/x|Qui 觉 si legge jué; in 睡觉 si legge jiào.
+开始|kai1shi3|iniziare|verbi|开=aprire/s;始=inizio/n|Letteralmente «aprire + inizio».
+准备|zhun3bei4|preparare|verbi|准=pronto, preciso/n;备=preparare/n|I due caratteri richiamano entrambi l'essere pronti.
+休息|xiu1xi5|riposare|verbi|休=riposare/n;息=riposo, fermarsi/n|I due caratteri richiamano entrambi il riposo.
+离开|li2kai1|lasciare, partire|verbi|离=separarsi, lasciare/s;开=aprire, partire/s|Letteralmente «separarsi + partire».
+参加|can1jia1|partecipare|verbi|参=partecipare/n;加=aggiungere/s|Letteralmente «partecipare + aggiungersi».
+想|xiang3|volere, pensare|verbi|想=pensare, volere/s
+听|ting1|ascoltare|verbi|听=ascoltare/s
+说|shuo1|dire, parlare|verbi|说=dire, parlare/s
 
 # --- scuola ---
-考试|kao3shi4|esame|scuola
-问题|wen4ti2|domanda, problema|scuola
-作业|zuo4ye4|compiti|scuola
+考试|kao3shi4|esame|scuola|考=fare un esame/s;试=provare, mettere alla prova/s|I due caratteri richiamano entrambi la prova: «esaminare + mettere alla prova».
+问题|wen4ti2|domanda, problema|scuola|问=chiedere/s;题=quesito, argomento/n|Letteralmente «chiedere + quesito».
+作业|zuo4ye4|compiti|scuola|作=fare/n;业=lavoro, attività/n|Letteralmente «lavoro da fare».
 
 # --- tempo libero ---
-音乐|yin1yue4|musica|tempo libero
-运动|yun4dong4|sport|tempo libero
-游戏|you2xi4|gioco|tempo libero
-足球|zu2qiu2|calcio|tempo libero
-篮球|lan2qiu2|pallacanestro|tempo libero
+音乐|yin1yue4|musica|tempo libero|音=suono/n;乐=musica/n|Letteralmente «suono + musica». Qui 乐 si legge yuè; in 快乐 si legge lè.
+运动|yun4dong4|sport|tempo libero|运=muovere, trasportare/n;动=muoversi/s|I due caratteri richiamano entrambi il movimento.
+游戏|you2xi4|gioco|tempo libero|游=giocare, girovagare/n;戏=gioco, spettacolo/n|I due caratteri richiamano entrambi il gioco.
+足球|zu2qiu2|calcio|tempo libero|足=piede/n;球=palla/s|Letteralmente «palla al piede».
+篮球|lan2qiu2|pallacanestro|tempo libero|篮=cesto/n;球=palla/s|Letteralmente «palla da cesto».
 
 # --- colori ---
-红色|hong2se4|rosso|colori
-白色|bai2se4|bianco|colori
-黑色|hei1se4|nero|colori
-蓝色|lan2se4|blu|colori
-黄色|huang2se4|giallo|colori
+红色|hong2se4|rosso|colori|红=rosso/s;色=colore/s|Letteralmente «colore rosso».
+白色|bai2se4|bianco|colori|白=bianco/s;色=colore/s|Letteralmente «colore bianco».
+黑色|hei1se4|nero|colori|黑=nero/s;色=colore/s|Letteralmente «colore nero».
+蓝色|lan2se4|blu|colori|蓝=blu/s;色=colore/s|Letteralmente «colore blu».
+黄色|huang2se4|giallo|colori|黄=giallo/s;色=colore/s|Letteralmente «colore giallo».

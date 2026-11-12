@@ -6,7 +6,8 @@ Cosa controlla (e cosa fa fallire lo script):
   * il numero di caratteri = numero di sillabe;
   * da 4 a 8 lettere di pinyin, massimo 3 sillabe, niente ü;
   * le parole duplicate;
-  * che ogni sillaba esista davvero nel pinyin standard.
+  * che ogni sillaba esista davvero nel pinyin standard;
+  * la colonna "parti": una per carattere, nello stesso ordine, con uno stato valido.
 
 Cosa segnala soltanto (WARNING): le differenze tra i toni scritti a mano e quelli
 calcolati dalla libreria pypinyin, da controllare a occhio.
@@ -28,6 +29,13 @@ OUT_SILLABE = RADICE / "js" / "syllables.js"
 
 MIN_LETTERE, MAX_LETTERE, MAX_SILLABE = 4, 8, 3
 SILLABA_NUMERATA = re.compile(r"[a-z]+[1-5]")
+
+# Stato di un carattere dentro la parola:
+#   s = da solo è una parola
+#   n = da solo non si usa, ma ha un significato che ritrovi in altre parole
+#   x = da solo non ha significato (suffisso, sillaba che esiste solo in quella parola)
+#   f = qui conta solo il suono (trascrizione di un nome straniero)
+STATI = {"s", "n", "x", "f"}
 
 # Parole in cui pypinyin sceglie una lettura diversa dal dizionario scolastico.
 # Qui la lettura scelta a mano è quella giusta; le elenchiamo per non avere falsi allarmi.
@@ -73,6 +81,33 @@ def differenze(scritto, atteso):
     return False
 
 
+def leggi_parti(caratteri, testo):
+    """Legge la colonna "parti": `电=elettricità/s;话=parola, discorso/s`.
+
+    Una voce per carattere, nello stesso ordine: carattere=significato/stato.
+    Restituisce (parti, errori).
+    """
+    elementi = [e.strip() for e in testo.split(";")]
+    if len(elementi) != len(caratteri):
+        return [], [f"{len(elementi)} parti per {len(caratteri)} caratteri"]
+
+    parti, errori = [], []
+    for carattere, elemento in zip(caratteri, elementi):
+        resto, barra, stato = elemento.rpartition("/")
+        stato = stato.strip()
+        simbolo, uguale, significato = resto.partition("=")
+        simbolo, significato = simbolo.strip(), significato.strip()
+        if not barra or stato not in STATI:
+            errori.append(f"{carattere}: serve uno stato tra {sorted(STATI)} dopo l'ultima '/' ({elemento!r})")
+        elif simbolo != carattere:
+            errori.append(f"{carattere}: la parte comincia con {simbolo!r}, non con il carattere atteso")
+        elif not uguale or not significato:
+            errori.append(f"{carattere}: manca il significato dopo '='")
+        else:
+            parti.append({"h": carattere, "m": significato, "k": stato})
+    return parti, errori
+
+
 def leggi_vocabolario(sillabe):
     errori, avvisi, parole, viste = [], [], [], set()
     insieme_sillabe = set(sillabe)
@@ -82,10 +117,11 @@ def leggi_vocabolario(sillabe):
         if not riga or riga.startswith("#"):
             continue
         campi = [c.strip() for c in riga.split("|")]
-        if len(campi) != 4 or not all(campi):
-            errori.append(f"riga {numero}: servono 4 campi separati da '|' -> {riga!r}")
+        if len(campi) not in (5, 6) or not all(campi[:5]):
+            errori.append(f"riga {numero}: servono 5 campi (più la nota facoltativa) separati da '|' -> {riga!r}")
             continue
-        caratteri, pinyin_num, italiano, categoria = campi
+        caratteri, pinyin_num, italiano, categoria, testo_parti = campi[:5]
+        nota = campi[5] if len(campi) == 6 else ""
 
         pezzi = SILLABA_NUMERATA.findall(pinyin_num)
         if "".join(pezzi) != pinyin_num:
@@ -113,7 +149,13 @@ def leggi_vocabolario(sillabe):
         if pinyin_num.endswith("5") and len(pezzi) == 1:
             avvisi.append(f"{caratteri}: una parola di una sillaba non dovrebbe avere il tono neutro")
 
-        parole.append({"h": caratteri, "p": pinyin_num, "it": italiano, "c": categoria})
+        parti, errori_parti = leggi_parti(caratteri, testo_parti)
+        errori.extend(f"riga {numero}: {e}" for e in errori_parti)
+
+        parola = {"h": caratteri, "p": pinyin_num, "it": italiano, "c": categoria, "parts": parti}
+        if nota:
+            parola["n"] = nota
+        parole.append(parola)
 
     return parole, errori, avvisi
 

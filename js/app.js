@@ -149,6 +149,7 @@
     hanzi.classList.toggle('shown', show);
     hanzi.setAttribute('aria-label', show ? `Caratteri: ${g.word.h}` : 'Caratteri nascosti');
     $('btn-hanzi').hidden = show;
+    $('btn-giveup').hidden = g.status !== 'playing';
   }
 
   function renderBoard({ revealRow, popRow, popIndex } = {}) {
@@ -236,6 +237,34 @@
     }
   }
 
+  function resultLine(g) {
+    const tries = g.rows.length;
+    if (g.status === 'won') return `Indovinata in ${tries} ${tries === 1 ? 'tentativo' : 'tentativi'}`;
+    if (g.status === 'gaveup') return 'Ti sei arreso: ecco la soluzione';
+    return 'Tentativi finiti: questa era la parola';
+  }
+
+  /** Il blocco "Com'è fatta": un riquadro per carattere, con pinyin e significato. */
+  function buildAnatomy(word) {
+    const info = Engine.describeWord(word);
+    const box = el('div', 'anatomy');
+    box.append(el('h3', '', "Com'è fatta"), el('p', 'anatomy-intro', info.intro));
+
+    const list = el('ul', 'parts');
+    for (const part of info.parts) {
+      const item = el('li', 'part');
+      const char = el('span', 'part-char', part.h);
+      char.lang = 'zh-Hans';
+      const text = el('span', 'part-text');
+      text.append(el('strong', '', part.lead), ` ${part.rest}`);
+      item.append(char, el('span', 'part-py', part.pinyin), text);
+      list.append(item);
+    }
+    box.append(list);
+    if (info.note) box.append(el('p', 'anatomy-note', info.note));
+    return box;
+  }
+
   function renderResult() {
     const g = game();
     if (g.status === 'playing') {
@@ -250,18 +279,11 @@
     seal.lang = 'zh-Hans';
     chars.forEach((c) => seal.append(el('span', '', c)));
 
-    const tries = g.rows.length;
     const text = el('div', 'result-text');
     text.append(
       el('p', 'result-pinyin', Engine.withToneMarks(g.word.p)),
       el('p', 'result-meaning', g.word.it),
-      el(
-        'p',
-        'result-line',
-        g.status === 'won'
-          ? `Indovinata in ${tries} ${tries === 1 ? 'tentativo' : 'tentativi'}`
-          : 'Tentativi finiti: questa era la parola',
-      ),
+      el('p', 'result-line', resultLine(g)),
     );
 
     const actions = el('div', 'result-actions');
@@ -276,7 +298,7 @@
       actions.append(listen);
     }
 
-    resultEl.replaceChildren(seal, text, actions);
+    resultEl.replaceChildren(seal, text, buildAnatomy(g.word), actions);
     resultEl.hidden = false;
   }
 
@@ -344,25 +366,61 @@
         toast('Indizio: ecco i caratteri');
       }
       render();
-      if (g.status !== 'playing' && !resultEl.hidden) {
-        resultEl.scrollIntoView({ block: 'nearest', behavior: reduceMotion ? 'auto' : 'smooth' });
-      }
+      scrollToResult();
     }, wait);
   }
 
-  function finish(g, won) {
-    g.status = won ? 'won' : 'lost';
+  function finish(g, won, gaveUp = false) {
+    g.status = won ? 'won' : gaveUp ? 'gaveup' : 'lost';
     stats[g.mode] = Engine.recordResult(stats[g.mode], won, g.rows.length);
     store.set('cp.stats', stats);
   }
 
+  function scrollToResult() {
+    if (resultEl.hidden) return;
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    resultEl.scrollIntoView({ block: 'nearest', behavior: reduceMotion ? 'auto' : 'smooth' });
+  }
+
+  // La resa chiede una seconda pressione, per non arrendersi toccando per sbaglio.
+  const GIVE_UP_LABEL = 'Mi arrendo';
+  let giveUpTimer;
+
+  function disarmGiveUp() {
+    clearTimeout(giveUpTimer);
+    const button = $('btn-giveup');
+    button.textContent = GIVE_UP_LABEL;
+    button.classList.remove('armed');
+  }
+
+  function onGiveUp() {
+    const g = game();
+    if (busy || g.status !== 'playing') return;
+
+    const button = $('btn-giveup');
+    if (!button.classList.contains('armed')) {
+      button.textContent = 'Conferma resa';
+      button.classList.add('armed');
+      giveUpTimer = setTimeout(disarmGiveUp, 4000);
+      return;
+    }
+
+    disarmGiveUp();
+    g.current = '';
+    finish(g, false, true); // conta come partita persa
+    render();
+    scrollToResult();
+  }
+
   function startNewGame() {
+    disarmGiveUp();
     games[settings.mode] = newGame(settings.mode);
     render();
   }
 
   function setMode(mode) {
     if (busy || !MODES[mode] || mode === settings.mode) return;
+    disarmGiveUp();
     settings.mode = mode;
     store.set('cp.settings', settings);
     render();
@@ -497,6 +555,7 @@
     renderClue();
   });
   $('btn-speak').addEventListener('click', speak);
+  $('btn-giveup').addEventListener('click', onGiveUp);
 
   // clic sullo sfondo = chiudi
   document.querySelectorAll('dialog').forEach((dialog) => {

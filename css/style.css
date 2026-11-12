@@ -459,6 +459,7 @@ svg .dot {
 
 .seal {
   --cell: 40px;
+  flex-shrink: 0;
   display: grid;
   grid-auto-flow: column;
   grid-template-rows: repeat(2, var(--cell));
@@ -793,6 +794,97 @@ dialog .primary {
 
 .dist .bar.has {
   background: var(--jade);
+}
+
+/* ------------------------------------------------------------ com'è fatta */
+
+#btn-giveup {
+  margin-left: auto;
+}
+
+.link-btn.armed {
+  font-weight: 700;
+  text-decoration-thickness: 2px;
+}
+
+.clue-hanzi {
+  flex-wrap: wrap;
+}
+
+.anatomy {
+  grid-column: 1 / -1;
+  margin-top: 8px;
+  padding-top: 12px;
+  border-top: 1px dashed var(--line);
+}
+
+.anatomy h3 {
+  margin: 0;
+  font-size: 16px;
+}
+
+.anatomy-intro {
+  margin: 2px 0 10px;
+  font-size: 14px;
+  color: var(--ink-soft);
+}
+
+.parts {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.part {
+  display: grid;
+  grid-template-columns: 48px 1fr;
+  column-gap: 12px;
+  align-items: center;
+}
+
+.part-char {
+  grid-row: 1 / span 2;
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border: 1.5px solid var(--line);
+  border-radius: 3px;
+  background-color: var(--paper);
+  background-image:
+    repeating-linear-gradient(to bottom, var(--guide) 0 3px, transparent 3px 6px),
+    repeating-linear-gradient(to right, var(--guide) 0 3px, transparent 3px 6px);
+  background-size: 1px 100%, 100% 1px;
+  background-position: center;
+  background-repeat: no-repeat;
+  font-family: var(--font-han);
+  font-size: 30px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.part-py {
+  align-self: end;
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.part-text {
+  align-self: start;
+  font-size: 14px;
+  color: var(--ink-soft);
+}
+
+.part-text strong {
+  color: var(--ink);
+}
+
+.anatomy-note {
+  margin: 12px 0 0;
+  font-size: 14px;
 }
 
 /* ------------------------------------------------------------ preferenze */
