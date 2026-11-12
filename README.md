@@ -1,6 +1,12 @@
 # 猜拼音 (Cāi pīnyīn)
 
-Gioca: apri `index.html` nel browser, senza installare nulla. Indovina la parola cinese di base scrivendo il suo **pinyin**; l'indizio è il significato in italiano.
+Gioca: [apri il gioco](https://TUO-UTENTE.github.io/cai-pinyin/)
+
+```
+https://TUO-UTENTE.github.io/cai-pinyin/
+```
+
+Funziona nel browser, senza installare nulla (oppure apri `index.html` dai file del progetto). Indovina la parola cinese di base scrivendo il suo **pinyin**; l'indizio è il significato in italiano.
 
 - Hai 6 tentativi. Verde: lettera giusta al posto giusto. Giallo: c'è, ma altrove. Grigio: non c'è.
 - **Facile**: solo lettere. **Con toni**: dopo ogni sillaba scrivi il numero del tono, per esempio `ni3hao3`.
