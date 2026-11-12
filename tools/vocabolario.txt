@@ -1,0 +1,207 @@
+# Vocabolario di base (livello HSK 1-2 circa)
+# Formato: caratteri | pinyin con numeri dei toni (5 = tono neutro) | significato in italiano | categoria
+# Le righe che iniziano con # sono commenti.
+# Dopo aver modificato questo file, esegui:  python3 tools/build_data.py
+#
+# Regole: da 4 a 8 lettere di pinyin (toni esclusi), massimo 3 sillabe, niente sillabe con ü.
+# I toni sono quelli "da dizionario" (nessuna regola di cambio tono, es. 你好 resta ni3hao3).
+
+# --- saluti ---
+你好|ni3hao3|ciao|saluti
+谢谢|xie4xie5|grazie|saluti
+再见|zai4jian4|arrivederci|saluti
+对不起|dui4bu5qi3|scusa, mi dispiace|saluti
+请问|qing3wen4|scusi, posso chiedere...?|saluti
+欢迎|huan1ying2|benvenuto|saluti
+
+# --- persone ---
+朋友|peng2you5|amico|persone
+学生|xue2sheng5|studente|persone
+老师|lao3shi1|insegnante|persone
+医生|yi1sheng1|medico|persone
+同学|tong2xue2|compagno di classe|persone
+小姐|xiao3jie3|signorina|persone
+警察|jing3cha2|poliziotto|persone
+司机|si1ji1|autista|persone
+孩子|hai2zi5|bambino|persone
+大家|da4jia1|tutti|persone
+名字|ming2zi5|nome|persone
+
+# --- pronomi e domande ---
+我们|wo3men5|noi|pronomi
+你们|ni3men5|voi|pronomi
+他们|ta1men5|loro|pronomi
+什么|shen2me5|che cosa|domande
+怎么|zen3me5|come|domande
+多少|duo1shao3|quanto, quanti|domande
+
+# --- famiglia ---
+爸爸|ba4ba5|papà|famiglia
+妈妈|ma1ma5|mamma|famiglia
+哥哥|ge1ge5|fratello maggiore|famiglia
+姐姐|jie3jie5|sorella maggiore|famiglia
+弟弟|di4di5|fratello minore|famiglia
+妹妹|mei4mei5|sorella minore|famiglia
+儿子|er2zi5|figlio|famiglia
+太太|tai4tai5|signora, moglie|famiglia
+
+# --- luoghi ---
+这里|zhe4li3|qui|luoghi
+那里|na4li3|là|luoghi
+前面|qian2mian5|davanti|luoghi
+后面|hou4mian5|dietro|luoghi
+里面|li3mian5|dentro|luoghi
+中国|zhong1guo2|Cina|luoghi
+北京|bei3jing1|Pechino|luoghi
+上海|shang4hai3|Shanghai|luoghi
+意大利|yi4da4li4|Italia|luoghi
+学校|xue2xiao4|scuola|luoghi
+大学|da4xue2|università|luoghi
+医院|yi1yuan4|ospedale|luoghi
+饭店|fan4dian4|ristorante, albergo|luoghi
+银行|yin2hang2|banca|luoghi
+超市|chao1shi4|supermercato|luoghi
+公园|gong1yuan2|parco|luoghi
+书店|shu1dian4|libreria|luoghi
+房间|fang2jian1|stanza|luoghi
+
+# --- trasporti ---
+火车|huo3che1|treno|trasporti
+飞机|fei1ji1|aereo|trasporti
+
+# --- lingue ---
+汉语|han4yu3|lingua cinese|lingue
+中文|zhong1wen2|cinese (lingua)|lingue
+英语|ying1yu3|inglese (lingua)|lingue
+
+# --- oggetti ---
+电话|dian4hua4|telefono|oggetti
+电脑|dian4nao3|computer|oggetti
+电视|dian4shi4|televisione|oggetti
+电影|dian4ying3|film|oggetti
+手机|shou3ji1|cellulare|oggetti
+杯子|bei1zi5|bicchiere, tazza|oggetti
+东西|dong1xi5|cosa, oggetto|oggetti
+衣服|yi1fu5|vestiti|oggetti
+椅子|yi3zi5|sedia|oggetti
+桌子|zhuo1zi5|tavolo|oggetti
+窗户|chuang1hu5|finestra|oggetti
+照片|zhao4pian4|foto|oggetti
+床|chuang2|letto|oggetti
+钱|qian2|soldi|oggetti
+
+# --- tempo ---
+今天|jin1tian1|oggi|tempo
+明天|ming2tian1|domani|tempo
+昨天|zuo2tian1|ieri|tempo
+现在|xian4zai4|adesso|tempo
+时候|shi2hou5|momento, tempo|tempo
+晚上|wan3shang5|sera|tempo
+上午|shang4wu3|mattina|tempo
+下午|xia4wu3|pomeriggio|tempo
+中午|zhong1wu3|mezzogiorno|tempo
+星期|xing1qi1|settimana|tempo
+今年|jin1nian2|quest'anno|tempo
+去年|qu4nian2|anno scorso|tempo
+生日|sheng1ri4|compleanno|tempo
+年|nian2|anno|tempo
+天|tian1|cielo, giorno|tempo
+
+# --- numeri ---
+零|ling2|zero|numeri
+千|qian1|mille|numeri
+
+# --- natura e animali ---
+天气|tian1qi4|tempo (meteo)|natura
+下雨|xia4yu3|piovere|natura
+太阳|tai4yang2|sole|natura
+月亮|yue4liang5|luna|natura
+山|shan1|montagna|natura
+风|feng1|vento|natura
+水|shui3|acqua|natura
+熊猫|xiong2mao1|panda|animali
+小狗|xiao3gou3|cagnolino|animali
+小猫|xiao3mao1|gattino|animali
+老虎|lao3hu3|tigre|animali
+
+# --- aggettivi ---
+喜欢|xi3huan5|piacere, amare|verbi
+高兴|gao1xing4|contento|aggettivi
+好吃|hao3chi1|buono (da mangiare)|aggettivi
+好看|hao3kan4|bello (da vedere)|aggettivi
+便宜|pian2yi5|economico|aggettivi
+快乐|kuai4le4|felice|aggettivi
+很多|hen3duo1|molto, molti|aggettivi
+冷|leng3|freddo|aggettivi
+忙|mang2|occupato|aggettivi
+快|kuai4|veloce|aggettivi
+长|chang2|lungo|aggettivi
+远|yuan3|lontano|aggettivi
+少|shao3|poco|aggettivi
+
+# --- cibo e bevande ---
+米饭|mi3fan4|riso cotto|cibo
+面条|mian4tiao2|spaghetti cinesi|cibo
+苹果|ping2guo3|mela|cibo
+水果|shui3guo3|frutta|cibo
+牛奶|niu2nai3|latte|cibo
+鸡蛋|ji1dan4|uovo|cibo
+面包|mian4bao1|pane|cibo
+咖啡|ka1fei1|caffè|cibo
+啤酒|pi2jiu3|birra|cibo
+蔬菜|shu1cai4|verdura|cibo
+牛肉|niu2rou4|manzo|cibo
+鸡肉|ji1rou4|pollo|cibo
+猪肉|zhu1rou4|maiale|cibo
+豆腐|dou4fu5|tofu|cibo
+饺子|jiao3zi5|ravioli cinesi|cibo
+包子|bao1zi5|panino al vapore|cibo
+火锅|huo3guo1|hot pot|cibo
+
+# --- verbi ---
+吃饭|chi1fan4|mangiare|verbi
+喝水|he1shui3|bere acqua|verbi
+看书|kan4shu1|leggere|verbi
+说话|shuo1hua4|parlare|verbi
+睡觉|shui4jiao4|dormire|verbi
+起床|qi3chuang2|alzarsi|verbi
+上班|shang4ban1|andare al lavoro|verbi
+下班|xia4ban1|finire il lavoro|verbi
+开车|kai1che1|guidare|verbi
+回家|hui2jia1|tornare a casa|verbi
+上课|shang4ke4|andare a lezione|verbi
+下课|xia4ke4|finire la lezione|verbi
+学习|xue2xi2|studiare|verbi
+工作|gong1zuo4|lavoro, lavorare|verbi
+认识|ren4shi5|conoscere (una persona)|verbi
+知道|zhi1dao4|sapere|verbi
+帮助|bang1zhu4|aiutare|verbi
+希望|xi1wang4|sperare|verbi
+觉得|jue2de5|pensare, ritenere|verbi
+开始|kai1shi3|iniziare|verbi
+准备|zhun3bei4|preparare|verbi
+休息|xiu1xi5|riposare|verbi
+离开|li2kai1|lasciare, partire|verbi
+参加|can1jia1|partecipare|verbi
+想|xiang3|volere, pensare|verbi
+听|ting1|ascoltare|verbi
+说|shuo1|dire, parlare|verbi
+
+# --- scuola ---
+考试|kao3shi4|esame|scuola
+问题|wen4ti2|domanda, problema|scuola
+作业|zuo4ye4|compiti|scuola
+
+# --- tempo libero ---
+音乐|yin1yue4|musica|tempo libero
+运动|yun4dong4|sport|tempo libero
+游戏|you2xi4|gioco|tempo libero
+足球|zu2qiu2|calcio|tempo libero
+篮球|lan2qiu2|pallacanestro|tempo libero
+
+# --- colori ---
+红色|hong2se4|rosso|colori
+白色|bai2se4|bianco|colori
+黑色|hei1se4|nero|colori
+蓝色|lan2se4|blu|colori
+黄色|huang2se4|giallo|colori

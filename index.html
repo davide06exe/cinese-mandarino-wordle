@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>猜拼音 - Wordle di pinyin</title>
+  <meta name="description" content="Indovina parole cinesi di base scrivendo il pinyin. Un Wordle per chi comincia a studiare il mandarino.">
+  <meta name="color-scheme" content="light dark">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='6' fill='%23c4311f'/%3E%3Ctext x='32' y='47' font-size='40' text-anchor='middle' fill='white' font-family='serif'%3E%E7%8C%9C%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="app">
+    <header class="top">
+      <div class="brand">
+        <h1 lang="zh-Hans">猜拼音</h1>
+        <p>Indovina la parola in pinyin</p>
+      </div>
+      <div class="tools">
+        <button class="icon-btn" id="btn-help" type="button" aria-label="Come si gioca">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.2a2.6 2.6 0 0 1 5 .9c0 1.7-2.5 2.2-2.5 3.9"/><circle cx="12" cy="17" r=".6" class="dot"/></svg>
+        </button>
+        <button class="icon-btn" id="btn-stats" type="button" aria-label="Statistiche">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 20V11M12 20V4M19 20v-6"/></svg>
+        </button>
+        <button class="icon-btn" id="btn-theme" type="button" aria-label="Cambia tema chiaro o scuro">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M12 4a8 8 0 0 1 0 16z" class="fill"/></svg>
+        </button>
+      </div>
+    </header>
+
+    <div class="mode" role="radiogroup" aria-label="Modalità di gioco">
+      <button type="button" role="radio" data-mode="facile" aria-checked="true">Facile</button>
+      <button type="button" role="radio" data-mode="toni" aria-checked="false">Con toni</button>
+    </div>
+    <p class="mode-note" id="mode-note"></p>
+
+    <section class="clue" aria-label="Indizio">
+      <div class="clue-main">
+        <p class="clue-meaning" id="clue-meaning"></p>
+        <p class="clue-facts" id="clue-facts"></p>
+      </div>
+      <button class="ghost-btn" id="btn-speak" type="button" hidden>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9.5v5h3.5L12 18.5v-13L7.5 9.5z" class="fill"/><path d="M15.5 9a4 4 0 0 1 0 6M18 6.5a7.5 7.5 0 0 1 0 11"/></svg>
+        Ascolta
+      </button>
+      <div class="clue-hanzi">
+        <span class="hanzi" id="clue-hanzi" lang="zh-Hans"></span>
+        <button class="link-btn" id="btn-hanzi" type="button">Mostra i caratteri</button>
+      </div>
+    </section>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+    <main class="board" id="board" role="grid" aria-label="Tentativi"></main>
+
+    <section class="result" id="result" hidden aria-live="polite"></section>
+
+    <div class="keyboard" id="keyboard" aria-label="Tastiera"></div>
+  </div>
+
+  <dialog id="dlg-help" aria-labelledby="help-title">
+    <form method="dialog">
+      <h2 id="help-title">Come si gioca</h2>
+      <p>Indovina la parola cinese scrivendo il suo pinyin. L'indizio è il significato in italiano. Hai 6 tentativi.</p>
+      <p>Le caselle sono raggruppate per sillaba. Ogni tentativo deve essere pinyin valido, ma non serve che sia una parola vera.</p>
+
+      <ul class="legend">
+        <li><span class="swatch" data-state="correct">n</span>Lettera giusta al posto giusto</li>
+        <li><span class="swatch" data-state="present">i</span>La lettera c'è, ma in un'altra posizione</li>
+        <li><span class="swatch" data-state="absent">x</span>La lettera non c'è</li>
+      </ul>
+
+      <h3>Due modalità</h3>
+      <p><strong>Facile</strong>: scrivi solo le lettere, senza toni.</p>
+      <p><strong>Con toni</strong>: dopo ogni sillaba scrivi il numero del tono, per esempio <code>ni3hao3</code>. Anche il numero è una casella e si colora come le lettere.</p>
+
+      <h3>I cinque toni</h3>
+      <ol class="tones" lang="zh-Hans">
+        <li><b>1</b><span class="py">mā</span><span class="it" lang="it">alto e piatto: mamma</span></li>
+        <li><b>2</b><span class="py">má</span><span class="it" lang="it">sale: canapa</span></li>
+        <li><b>3</b><span class="py">mǎ</span><span class="it" lang="it">scende e risale: cavallo</span></li>
+        <li><b>4</b><span class="py">mà</span><span class="it" lang="it">scende di colpo: sgridare</span></li>
+        <li><b>5</b><span class="py">ma</span><span class="it" lang="it">neutro, breve e leggero</span></li>
+      </ol>
+
+      <h3>Aiuti</h3>
+      <p>Dopo 3 errori compaiono i caratteri. Puoi mostrarli anche prima. Il tasto Ascolta usa la voce cinese del tuo dispositivo, se ce n'è una.</p>
+      <p class="fine">I toni sono quelli del dizionario, senza i cambi di tono che si sentono nel parlato (per esempio 你好 si legge ni2hao3, ma qui resta ni3hao3).</p>
+
+      <button class="primary" value="close">Ho capito</button>
+    </form>
+  </dialog>
+
+  <dialog id="dlg-stats" aria-labelledby="stats-title">
+    <form method="dialog">
+      <h2 id="stats-title">Statistiche</h2>
+      <div id="stats-body"></div>
+      <button class="primary" value="close">Chiudi</button>
+    </form>
+  </dialog>
+
+  <script src="js/syllables.js"></script>
+  <script src="js/words.js"></script>
+  <script src="js/engine.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

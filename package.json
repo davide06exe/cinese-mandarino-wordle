@@ -1,0 +1,13 @@
+{
+  "name": "cai-pinyin",
+  "version": "1.0.0",
+  "description": "Wordle per imparare il pinyin: parole cinesi di base, con significato in italiano",
+  "private": true,
+  "scripts": {
+    "test": "node --test",
+    "build:data": "python3 tools/build_data.py"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
